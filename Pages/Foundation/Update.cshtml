@@ -1,0 +1,35 @@
+﻿@page
+@model MyWebsite.Pages.Foundation.UpdateModel
+@{
+}
+
+<section class="heading">
+    <h3>Update Record</h3>
+</section>
+
+<section class="new-disaster">
+
+    <!--form to capture user input-->
+    <form method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="@Model.disasterInfo.did" />
+        <h3>Disaster Information</h3>
+        <input type="text" name="dislocation" class="box" placeholder="Location" value="@Model.disasterInfo.dlocation" required>
+        <h4>Start date</h4>
+        <input type="text" name="disstart" class="box" value="@Model.disasterInfo.dstart" required placeholder="Start date">
+        <h4>End date</h4>
+        <input type="text" name="disend" class="box" value="@Model.disasterInfo.dend" placeholder="End date">
+        <input type="text" name="disdescription" class="box" placeholder="Description" value="@Model.disasterInfo.ddescription" required>
+        <input type="text" name="disaids" class="box" placeholder="Required aid (food, water, etc.)" value="@Model.disasterInfo.daid" required>
+
+        @if (Model.successMessage.Length > 0)
+        {
+            <div class='alert alert-warning alert-dismissable fade show' role='alert'>
+                <strong>@Model.successMessage</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+
+        <input type="submit" value="Update" name="add_disaster" class="btn">
+    </form>
+
+</section>

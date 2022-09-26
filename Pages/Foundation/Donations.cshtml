@@ -1,0 +1,92 @@
+﻿@page
+@model MyWebsite.Pages.Foundation.DonationsModel
+@{
+}
+
+<header class="header">
+
+    <div class="flex">
+
+        <a href="Homepage.html" class="logo">Disasters<span> Alleviation </span>Foundation</a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="/Foundation/Index">Summaries</a></li>
+                <li><a href="/Foundation/Disasters">Disasters</a></li>
+                <li><a href="/Foundation/Donations">Donations</a></li>
+            </ul>
+        </nav>
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+        </div>
+
+        <div class="account-box">
+            <a href="#" class="delete-btn">Logout</a>
+        </div>
+
+    </div>
+
+</header>
+
+<section class="heading">
+    <h3>Monetary Donations</h3>
+</section>
+
+<section class="new-disaster">
+
+    <!--form to capture user input-->
+    <form method="POST" enctype="multipart/form-data">
+        <h3>Donation Information</h3>
+        <input type="text" name="monname" class="box" placeholder="Donor Name" required>
+        <input type="text" name="monamount" class="box" required placeholder="Amount to donate">
+        <input type="text" name="mondate" class="box" placeholder="Date donated" required>
+
+        @if (Model.successMessage.Length > 0)
+        {
+            <div class='alert alert-warning alert-dismissable fade show' role='alert'>
+                <strong>@Model.successMessage</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+
+        <input type="submit" value="Donate" name="add_disaster" class="btn">
+    </form>
+
+</section>
+
+<section class="heading">
+    <h3>Other Donations</h3>
+</section>
+
+<section class="new-disaster">
+
+    <!--form to capture user input-->
+    <form method="POST" enctype="multipart/form-data">
+        <h3>Donation Information</h3>
+        <input type="text" name="goodname" class="box" placeholder="Donor name" required>
+        <input type="text" name="goodtotal" class="box" required placeholder="Total items">
+        <h4>select type of goods to donate</h4>
+        <select name="goodtype" required class="box" placeholder="Select type of goods" onchange="la(this.value)">
+            <option>Clothes</option>
+            <option>Non-perishable foods</option>
+            <option>Toys</option>
+            <option>Toiletries</option>
+            <option>Bedding</option>
+        </select>
+        <input type="text" name="gooddescription" class="box" placeholder="Description" required>
+        <input type="text" name="gooddate" class="box" placeholder="Date donated" required>
+
+        @if (Model.successMessage.Length > 0)
+        {
+            <div class='alert alert-warning alert-dismissable fade show' role='alert'>
+                <strong>@Model.successMessage</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+
+        <input type="submit" value="Donate" name="add_disaster" class="btn">
+    </form>
+
+</section>

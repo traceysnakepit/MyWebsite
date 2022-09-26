@@ -1,0 +1,458 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+
+/* Provide sufficient contrast against white background */
+:root {
+    --pink: #c655c1;
+    --neworange: #ffc466;
+    --purple: #8700c4;
+    --red: #c0392b;
+    --orange: #f39c12;
+    --black: #333;
+    --white: #fff;
+    --green: #47f908;
+    --light-color: #666;
+    --light-white: #ccc;
+    --light-bg: #f5f5f5;
+    --border: .1rem solid var(--black);
+    --box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+* {
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+    *::selection {
+        background-color: var(--pink);
+        color: var(--white);
+    }
+
+    *::-webkit-scrollbar {
+        height: .5rem;
+        width: 1rem;
+    }
+
+    *::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background-color: var(--pink);
+    }
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--neworange);
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+.heading {
+    text-align: center;
+    font-size: 4rem;
+    color: var(--white);
+    padding: 1rem;
+    margin: 2rem 0;
+    background: var(--purple);
+}
+
+    .heading span {
+        color: var(--neworange);
+    }
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.btn,
+.delete-btn,
+.option-btn,
+.checkout-btn {
+    display: inline-block;
+    border-radius: .5rem;
+    margin-top: 1rem;
+    font-size: 1.8rem;
+    color: var(--white);
+    cursor: pointer;
+    padding: 1rem 3rem;
+    text-transform: capitalize;
+}
+
+.btn {
+    background-color: var(--purple);
+}
+
+.delete-btn {
+    background-color: var(--red);
+}
+
+.option-btn {
+    background-color: var(--orange);
+}
+
+.checkout-btn {
+    background-color: var(--green);
+}
+
+    .btn:hover,
+    .delete-btn:hover,
+    .option-btn:hover,
+    .checkout-btn:hover {
+        background-color: var(--black);
+    }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+}
+
+    .header .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+        .header .flex .account-box {
+            position: absolute;
+            top: 120%;
+            right: 2rem;
+            width: 20rem;
+            border-radius: .5rem;
+            box-shadow: var(--box-shadow);
+            background-color: var(--white);
+            padding: 2rem;
+            text-align: center;
+            border: var(--border);
+            display: none;
+            animation: fadeIn .2s linear;
+        }
+
+            .header .flex .account-box.active {
+                display: inline-block;
+            }
+
+            .header .flex .account-box p {
+                padding-bottom: 1rem;
+                font-size: 2rem;
+                color: var(--light-color);
+            }
+
+            .header .flex .account-box .delete-btn {
+                margin-top: 0;
+            }
+
+            .header .flex .account-box div {
+                font-size: 2rem;
+                margin-top: 2rem;
+                color: var(--light-color);
+            }
+
+                .header .flex .account-box div a {
+                    color: var(--pink);
+                }
+
+                    .header .flex .account-box div a:hover {
+                        text-decoration: underline;
+                    }
+
+        .header .flex .icons > * {
+            font-size: 2.5rem;
+            margin-left: 1rem;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+            .header .flex .icons > *:hover {
+                color: var(--neworange);
+            }
+
+        .header .flex .icons span {
+            font-size: 2rem;
+        }
+
+        .header .flex .icons div {
+            font-size: 2.5rem;
+            margin-left: 1.7rem;
+            cursor: pointer;
+            color: var(--purple);
+        }
+
+            .header .flex .icons div:hover {
+                color: var(--neworange);
+            }
+
+        .header .flex .navbar a {
+            margin: 0 1rem;
+            font-size: 2rem;
+            color: var(--light-color);
+        }
+
+            .header .flex .navbar a:hover {
+                text-decoration: underline;
+                color: var(--neworange);
+            }
+
+        .header .flex .logo {
+            font-size: 2.5rem;
+            color: var(--black);
+        }
+
+            .header .flex .logo span {
+                color: var(--purple);
+            }
+
+.table-wrapper {
+    margin: 10px 70px 70px;
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+    .fl-table td, .fl-table th {
+        text-align: center;
+        padding: 8px;
+    }
+
+    .fl-table td {
+        border-right: 1px solid #f8f8f8;
+        font-size: 12px;
+    }
+
+    .fl-table thead th {
+        color: #ffffff;
+        background: #db12c7;
+    }
+
+
+        .fl-table thead th:nth-child(odd) {
+            color: #ffffff;
+            background: #ba66b2;
+        }
+
+    .fl-table tr:nth-child(even) {
+        background: #F8F8F8;
+    }
+
+#menu-btn {
+    display: none;
+}
+
+@keyframes fadeIn {
+    0% {
+        transform: translateY(1rem);
+        opacity: .5;
+    }
+}
+
+@media (max-width: 991px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    #menu-btn {
+        display: inline-block;
+    }
+
+    .header .flex .navbar {
+        position: absolute;
+        top: 99%;
+        left: 0;
+        right: 0;
+        background-color: var(--white);
+        border-top: var(--border);
+        border-bottom: var(--border);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+        .header .flex .navbar.active {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .header .flex .navbar a {
+            margin: 2rem;
+            display: block;
+        }
+
+    .fl-table {
+        display: block;
+        width: 100%;
+    }
+
+    .table-wrapper:before {
+        content: "Scroll horizontally >";
+        display: block;
+        text-align: right;
+        font-size: 11px;
+        color: white;
+        padding: 0 0 10px;
+    }
+
+    .fl-table thead, .fl-table tbody, .fl-table thead th {
+        display: block;
+    }
+
+        .fl-table thead th:last-child {
+            border-bottom: none;
+        }
+
+    .fl-table thead {
+        float: left;
+    }
+
+    .fl-table tbody {
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+    }
+
+    .fl-table td, .fl-table th {
+        padding: 20px .625em .625em .625em;
+        height: 60px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 120px;
+        font-size: 13px;
+        text-overflow: ellipsis;
+    }
+
+    .fl-table thead th {
+        text-align: left;
+        border-bottom: 1px solid #f7f7f9;
+    }
+
+    .fl-table tbody tr {
+        display: table-cell;
+    }
+
+        .fl-table tbody tr:nth-child(odd) {
+            background: none;
+        }
+
+    .fl-table tr:nth-child(even) {
+        background: transparent;
+    }
+
+    .fl-table tr td:nth-child(odd) {
+        background: #F8F8F8;
+        border-right: 1px solid #E6E4E4;
+    }
+
+    .fl-table tr td:nth-child(even) {
+        border-right: 1px solid #E6E4E4;
+    }
+
+    .fl-table tbody td {
+        display: block;
+        text-align: center;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+.new-disaster form {
+    max-width: 50rem;
+    border-radius: .5rem;
+    background-color: var(--white);
+    border: var(--border);
+    padding: 2rem;
+    text-align: center;
+    margin: 0 auto;
+}
+
+    .new-disaster form h3 {
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        color: var(--black);
+        margin-bottom: 1.5rem;
+    }
+
+    .new-disaster form h4 {
+        font-size: 1.5rem;
+        text-transform: lowercase;
+        color: var(--black);
+        margin-top: 1.0rem;
+        text-align: left;
+    }
+
+.new-disaster label {
+    font-size: 2.0rem;
+    text-transform: lowercase;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.new-disaster form .box {
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 1.8rem;
+    color: var(--black);
+    border-radius: .5rem;
+    background-color: var(--light-bg);
+    padding: 1.2rem 1.4rem;
+    border: var(--border);
+}

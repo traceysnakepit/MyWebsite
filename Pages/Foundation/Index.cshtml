@@ -1,0 +1,128 @@
+﻿@page
+@model MyWebsite.Pages.Foundation.IndexModel
+@{
+}
+
+<header class="header">
+
+    <div class="flex">
+
+        <a href="Homepage.html" class="logo">Disasters<span> Alleviation </span>Foundation</a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="/Foundation/Index">Summaries</a></li>
+                <li><a href="/Foundation/Disasters">Disasters</a></li>
+                <li><a href="/Foundation/Donations">Donations</a></li>
+            </ul>
+        </nav>
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+        </div>
+
+        <div class="account-box">
+            <a href="#" class="delete-btn">Logout</a>
+        </div>
+
+    </div>
+
+</header>
+
+<section class="heading">
+    <h3>Existing Disasters</h3>
+</section>
+
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Location</th>
+                <th>Started</th>
+                <th>Ended</th>
+                <th>Description</th>
+                <th>Required Aid</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.listDisaster)
+            {
+                <tr>
+                    <td>@item.did</td>
+                    <td>@item.dlocation</td>
+                    <td>@item.dstart</td>
+                    <td>@item.dend</td>
+                    <td>@item.ddescription</td>
+                    <td>@item.daid</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/Foundation/Update?id=@item.did">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+    <section class="heading">
+        <h3>Monetary Donations</h3>
+    </section>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Donor Name</th>
+                <th>Amount Donated</th>
+                <th>Date Donated</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.listMoney)
+            {
+                <tr>
+                    <td>@item.mid</td>
+                    <td>@item.mname</td>
+                    <td>@item.mamount</td>
+                    <td>@item.mdate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+    <section class="heading">
+        <h3>Goods Donations</h3>
+    </section>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Donor Name</th>
+                <th>Total Items</th>
+                <th>Item Type</th>
+                <th>Description</th>
+                <th>Date Donated</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.listGoods)
+            {
+                <tr>
+                    <td>@item.gid</td>
+                    <td>@item.gname</td>
+                    <td>@item.gtotal</td>
+                    <td>@item.gtype</td>
+                    <td>@item.gdescription</td>
+                    <td>@item.gdate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
