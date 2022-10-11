@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MyWebsite.Model
 {
-    public class InfoCollection
+    public class NewMoneyCollection
     {
     }
 }
