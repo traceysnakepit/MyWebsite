@@ -25,7 +25,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query1 = "select * from [dbo].[NewDisasters]";
+                    string query1 = "select * from [dbo].[NewDisasters] where DisasterID > 1;";
 
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
