@@ -12,7 +12,7 @@
         <nav class="navbar">
             <ul>
                 <li><a href="/Foundation/Index">Summaries</a></li>
-                <li><a href="/Foundation/Disasters">Disasters</a></li>
+                <li><a href="/Foundation/RecordDisaster">Disasters</a></li>
                 <li><a href="/Foundation/Donations">Donations</a></li>
             </ul>
         </nav>
@@ -30,22 +30,18 @@
 
 </header>
 
-<section class="heading">
-    <h3>Record Disaster</h3>
-</section>
-
 <section class="new-disaster">
 
     <!--form to capture user input-->
     <form method="POST" enctype="multipart/form-data">
         <h3>Disaster Information</h3>
-        <input type="text" name="dislocation" class="box" placeholder="Location" required>
+        <input type="text" name="newlocation" class="box" placeholder="Location" required>
         <h4>Start date</h4>
-        <input type="text" name="disstart" class="box" required placeholder="Start date">
+        <input type="date" name="newstart" class="box" required placeholder="Start date">
         <h4>End date</h4>
-        <input type="text" name="disend" class="box" placeholder="End date">
-        <input type="text" name="disdescription" class="box" placeholder="Description" required>
-        <input type="text" name="disaids" class="box" placeholder="Required aid (food, water, etc.)" required>
+        <input type="date" name="newend" class="box" placeholder="End date">
+        <input type="text" name="newdetails" class="box" placeholder="Description" required>
+        <input type="text" name="newhelp" class="box" placeholder="Required aid (food, water, etc.)" required>
 
         @if (Model.successMessage.Length > 0)
         {

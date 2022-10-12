@@ -20,11 +20,11 @@ namespace MyWebsite.Pages.Foundation
 
         public void OnPost()
         {
-            disasterInfo.dlocation = Request.Form["dislocation"];
-            disasterInfo.dstart = Request.Form["disstart"];
-            disasterInfo.dend = Request.Form["disend"];
-            disasterInfo.ddescription = Request.Form["disdescription"];
-            disasterInfo.daid = Request.Form["disaids"];
+            disasterInfo.dlocation = Request.Form["newlocation"];
+            disasterInfo.dstart = Request.Form["newstart"];
+            disasterInfo.dend = Request.Form["newend"];
+            disasterInfo.ddescription = Request.Form["newdetails"];
+            disasterInfo.daid = Request.Form["newhelp"];
 
             try
             {
@@ -34,15 +34,15 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query4 = "insert into [dbo].[Disasters] values (@dislocation, @disstart, @disend, @disdescription, @disaids);";
+                    string query4 = "insert into [dbo].[NewDisasters] values (@newlocation, @newstart, @newend, @newdetails, @newhelp);";
 
                     using (SqlCommand comm = new SqlCommand(query4, conn))
                     {
-                        comm.Parameters.AddWithValue("@dislocation", disasterInfo.dlocation);
-                        comm.Parameters.AddWithValue("@disstart", disasterInfo.dstart);
-                        comm.Parameters.AddWithValue("@disend", disasterInfo.dend);
-                        comm.Parameters.AddWithValue("@disdescription", disasterInfo.ddescription);
-                        comm.Parameters.AddWithValue("@disaids", disasterInfo.daid);
+                        comm.Parameters.AddWithValue("@newlocation", disasterInfo.dlocation);
+                        comm.Parameters.AddWithValue("@newstart", disasterInfo.dstart);
+                        comm.Parameters.AddWithValue("@newend", disasterInfo.dend);
+                        comm.Parameters.AddWithValue("@newdetails", disasterInfo.ddescription);
+                        comm.Parameters.AddWithValue("@newhelp", disasterInfo.daid);
 
                         comm.ExecuteNonQuery();
                     }
