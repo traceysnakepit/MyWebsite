@@ -36,8 +36,8 @@ namespace MyWebsite.Pages.Foundation
                             if (reader.Read())
                             {
                                 disasterInfo.dlocation = reader.GetString(0);
-                                disasterInfo.dstart = reader.GetString(1);
-                                disasterInfo.dend = reader.GetString(2);
+                                disasterInfo.dstart = reader.GetDateTime(1);
+                                disasterInfo.dend = reader.GetDateTime(2);
                                 disasterInfo.ddescription = reader.GetString(3);
                                 disasterInfo.daid = reader.GetString(4);
                             }
@@ -54,8 +54,8 @@ namespace MyWebsite.Pages.Foundation
         public void OnPost()
         {
             disasterInfo.dlocation = Request.Form["dislocation"];
-            disasterInfo.dstart = Request.Form["disstart"];
-            disasterInfo.dend = Request.Form["disend"];
+            disasterInfo.dstart = Convert.ToDateTime(Request.Form["disstart"]);
+            disasterInfo.dend = Convert.ToDateTime(Request.Form["disend"]);
             disasterInfo.ddescription = Request.Form["disdescription"];
             disasterInfo.daid = Request.Form["disaids"];
 

@@ -91,8 +91,8 @@ namespace MyWebsite.Pages.Foundation
     {
         public string did;
         public string dlocation;
-        public string dstart;
-        public string dend;
+        public DateTime dstart;
+        public DateTime dend;
         public string ddescription;
         public string daid;
     }

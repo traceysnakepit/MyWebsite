@@ -37,8 +37,8 @@ namespace MyWebsite.Pages.Foundation
 
                                 dis.did = "" + reader.GetInt32(0);
                                 dis.dlocation = reader.GetString(1);
-                                dis.dstart = reader.GetString(2);
-                                dis.dend = reader.GetString(3);
+                                dis.dstart = reader.GetDateTime(2);
+                                dis.dend = reader.GetDateTime(3);
                                 dis.ddescription = reader.GetString(4);
                                 dis.daid = reader.GetString(5);
 
@@ -57,8 +57,8 @@ namespace MyWebsite.Pages.Foundation
         public void OnPost()
         {
             disasterInfo.dlocation = Request.Form["newlocation"];
-            disasterInfo.dstart = Request.Form["newstart"];
-            disasterInfo.dend = Request.Form["newend"];
+            disasterInfo.dstart = Convert.ToDateTime(Request.Form["newstart"]);
+            disasterInfo.dend = Convert.ToDateTime(Request.Form["newend"]);
             disasterInfo.ddescription = Request.Form["newdetails"];
             disasterInfo.daid = Request.Form["newhelp"];
 
