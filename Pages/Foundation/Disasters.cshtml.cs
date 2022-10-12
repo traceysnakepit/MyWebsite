@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Data.SqlClient;
 
 namespace MyWebsite.Pages.Foundation
 {
@@ -20,36 +16,42 @@ namespace MyWebsite.Pages.Foundation
 
         public void OnPost()
         {
-            disasterInfo.dlocation = Request.Form["dislocation"];
-            disasterInfo.dstart = Request.Form["disstart"];
-            disasterInfo.dend = Request.Form["disend"];
-            disasterInfo.ddescription = Request.Form["disdescription"];
-            disasterInfo.daid = Request.Form["daids"];
+            string newloc = Request.Form["dislocation"];
+            string newstart = Request.Form["disstart"];
+            string newend = Request.Form["disend"];
+            string newdes = Request.Form["disdescription"];
+            string newaid = Request.Form["disaids"];
+
+            disasterInfo.dlocation = newloc;
+            disasterInfo.dstart = Convert.ToDateTime(newstart);
+            disasterInfo.dend = Convert.ToDateTime(newend);
+            disasterInfo.ddescription = newdes;
+            disasterInfo.daid = newaid;
 
             try
             {
                 string connString = "Server=tcp:appr6312poe.database.windows.net,1433;Initial Catalog=Foundation;Persist Security Info=False;User ID=reanetse;Password=Momentox27p!;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
-                using(SqlConnection conn = new SqlConnection(connString))
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     conn.Open();
-                        
-                    string query4 = "insert into [dbo].[Disasters] values (@dislocation, @disstart, @disend, @disdescription, @daids);";
-                
-                    using (SqlCommand comm = new SqlCommand(query4, conn))
+
+                    string query = $"insert into [dbo].[NewDisasters] (Location, StartDate, EndDate, Details, RequiredAid) values ('{newloc}', '{newstart}', '{newend}', '{newdes}', '{newaid}');";
+
+                    using (SqlCommand comm = new SqlCommand(query, conn))
                     {
-                        comm.Parameters.AddWithValue("@dislocation", disasterInfo.dlocation);
-                        comm.Parameters.AddWithValue("@disstart", disasterInfo.dstart);
-                        comm.Parameters.AddWithValue("@disend", disasterInfo.dend);
-                        comm.Parameters.AddWithValue("@disdescription", disasterInfo.ddescription);
-                        comm.Parameters.AddWithValue("@disaids", disasterInfo.daid);
+                        comm.Parameters.AddWithValue(newloc, disasterInfo.dlocation);
+                        comm.Parameters.AddWithValue(newstart, disasterInfo.dstart);
+                        comm.Parameters.AddWithValue(newend, disasterInfo.dend);
+                        comm.Parameters.AddWithValue(newdes, disasterInfo.ddescription);
+                        comm.Parameters.AddWithValue(newaid, disasterInfo.daid);
 
                         comm.ExecuteNonQuery();
                     }
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }

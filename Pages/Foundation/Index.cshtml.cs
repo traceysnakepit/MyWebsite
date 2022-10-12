@@ -1,10 +1,7 @@
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MyWebsite.Pages.Foundation
 {
@@ -24,7 +21,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query1 = "select * from [dbo].[Disasters]";
+                    string query1 = $"select * from [dbo].[NewDisasters];";
 
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
@@ -36,8 +33,8 @@ namespace MyWebsite.Pages.Foundation
 
                                 dis.did = "" + reader.GetInt32(0);
                                 dis.dlocation = reader.GetString(1);
-                                dis.dstart = reader.GetString(2);
-                                dis.dend = reader.GetString(3);
+                                dis.dstart = reader.GetDateTime(2);
+                                dis.dend = reader.GetDateTime(3);
                                 dis.ddescription = reader.GetString(4);
                                 dis.daid = reader.GetString(5);
 
@@ -60,7 +57,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query2 = "select * from [dbo].[Goods]";
+                    string query2 = $"select * from [dbo].[NewGoods];";
 
                     using (SqlCommand comm = new SqlCommand(query2, conn))
                     {
@@ -70,12 +67,11 @@ namespace MyWebsite.Pages.Foundation
                             {
                                 GoodsInfo goodies = new GoodsInfo();
 
-                                goodies.gid = "" + reader.GetInt32(0);
-                                goodies.gname = reader.GetString(1);
-                                goodies.gtotal = "" + reader.GetInt32(2);
-                                goodies.gtype = reader.GetString(3);
-                                goodies.gdescription = reader.GetString(4);
-                                goodies.gdate = reader.GetString(5);
+                                goodies.gname = reader.GetString(0);
+                                goodies.gtotal = "" + reader.GetInt32(1);
+                                goodies.gtype = reader.GetString(2);
+                                goodies.gdescription = reader.GetString(3);
+                                goodies.gdate = reader.GetDateTime(4);
 
                                 listGoods.Add(goodies);
                             }
@@ -96,7 +92,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query3 = "select * from [dbo].[Money]";
+                    string query3 = $"select * from [dbo].[NewMoney];";
 
                     using (SqlCommand comm = new SqlCommand(query3, conn))
                     {
@@ -106,10 +102,9 @@ namespace MyWebsite.Pages.Foundation
                             {
                                 MoneyInfo monies = new MoneyInfo();
 
-                                monies.mid = "" + reader.GetInt32(0);
-                                monies.mname = reader.GetString(1);
-                                monies.mamount = "" + reader.GetInt32(2);
-                                monies.mdate = reader.GetString(3);
+                                monies.mname = reader.GetString(0);
+                                monies.mamount = "" + reader.GetInt32(1);
+                                monies.mdate = reader.GetDateTime(2);
 
                                 listMoney.Add(monies);
                             }
@@ -126,29 +121,27 @@ namespace MyWebsite.Pages.Foundation
 
     public class DisasterInfo
     {
-        public string did;
-        public string dlocation;
-        public string dstart;
-        public string dend;
-        public string ddescription;
-        public string daid;
+        public string did { get; set; }
+        public string dlocation { get; set; }
+        public DateTime dstart { get; set; }
+        public DateTime dend { get; set; }
+        public string ddescription { get; set; }
+        public string daid { get; set; }
     }
 
     public class MoneyInfo
     {
-        public string mid;
-        public string mname;
-        public string mamount;
-        public string mdate;
+        public string mname { get; set; }
+        public string mamount { get; set; }
+        public DateTime mdate { get; set; }
     }
 
     public class GoodsInfo
     {
-        public string gid;
-        public string gname;
-        public string gtotal;
-        public string gtype;
-        public string gdescription;
-        public string gdate;
+        public string gname { get; set; }
+        public string gtotal { get; set; }
+        public string gtype { get; set; }
+        public string gdescription { get; set; }
+        public DateTime gdate { get; set; }
     }
 }
