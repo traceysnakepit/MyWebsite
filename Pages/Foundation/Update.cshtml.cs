@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Data.SqlClient;
 
 namespace MyWebsite.Pages.Foundation
 {
@@ -26,7 +22,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query1 = "select * from [dbo].[Disasters] where DisasterID = @id";
+                    string query1 = "select * from [dbo].[NewDisasters] where DisasterID = @id";
 
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
@@ -47,17 +43,13 @@ namespace MyWebsite.Pages.Foundation
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine("Exception: " + ex.ToString());
             }
         }
 
         public void OnPost()
         {
-            disasterInfo.dlocation = Request.Form["dislocation"];
-            disasterInfo.dstart = Convert.ToDateTime(Request.Form["disstart"]);
             disasterInfo.dend = Convert.ToDateTime(Request.Form["disend"]);
-            disasterInfo.ddescription = Request.Form["disdescription"];
-            disasterInfo.daid = Request.Form["disaids"];
 
             try
             {
@@ -67,15 +59,11 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query4 = "update [dbo].[Disasters] set Location = @dislocation, StartDate = @disstart, EndDate = @disend, Description = @disdescription, RequiredAid = @disaids where DisasterID = @id;";
+                    string query4 = "update [dbo].[NewDisasters] set EndDate = @disend where DisasterID = @id;";
 
                     using (SqlCommand comm = new SqlCommand(query4, conn))
                     {
-                        comm.Parameters.AddWithValue("@dislocation", disasterInfo.dlocation);
-                        comm.Parameters.AddWithValue("@disstart", disasterInfo.dstart);
                         comm.Parameters.AddWithValue("@disend", disasterInfo.dend);
-                        comm.Parameters.AddWithValue("@disdescription", disasterInfo.ddescription);
-                        comm.Parameters.AddWithValue("@disaids", disasterInfo.daid);
 
                         comm.ExecuteNonQuery();
                     }
@@ -84,10 +72,9 @@ namespace MyWebsite.Pages.Foundation
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine("Exception: " + ex.ToString());
             }
-
-            Response.Redirect("/Foundation/Index");
+            successMessage = "Date updated.";
         }
     }
 }

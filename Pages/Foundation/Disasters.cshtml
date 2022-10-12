@@ -39,7 +39,7 @@
         <h4>Start date</h4>
         <input type="date" name="newstart" class="box" required placeholder="Start date">
         <h4>End date</h4>
-        <input type="date" name="newend" class="box" placeholder="End date">
+        <input type="date" name="newend" class="box" placeholder="End date" required>
         <input type="text" name="newdetails" class="box" placeholder="Description" required>
         <input type="text" name="newhelp" class="box" placeholder="Required aid (food, water, etc.)" required>
 
@@ -69,18 +69,27 @@
                 <th>Ended</th>
                 <th>Description</th>
                 <th>Required Aid</th>
+                <th>Action</th>
+                <th>Donate</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.allDisasters)
             {
-                <tr>
-                    <td>@item.dlocation</td>
-                    <td>@item.dstart</td>
-                    <td>@item.dend</td>
-                    <td>@item.ddescription</td>
-                    <td>@item.daid</td>
-                </tr>
+            <tr>
+                <td>@item.dlocation</td>
+                <td>@item.dstart</td>
+                <td>@item.dend</td>
+                <td>@item.ddescription</td>
+                <td>@item.daid</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Foundation/Update?id=@item.did">Edit</a>
+                </td>
+                <td>
+                    <a class="option-btn" href="/Foundation/DonateMoney?id=@item.did">Money</a>
+                    <a class="option-btn" href="/Foundation/DonateGoods?id=@item.did">Goods</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

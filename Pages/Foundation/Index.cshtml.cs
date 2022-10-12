@@ -1,10 +1,7 @@
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MyWebsite.Pages.Foundation
 {
@@ -23,10 +20,11 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query2 = "select * from [dbo].[Goods]";
+                    string query2 = "select * from [dbo].[Goods];";
 
                     using (SqlCommand comm = new SqlCommand(query2, conn))
                     {
+
                         using (SqlDataReader reader = comm.ExecuteReader())
                         {
                             while (reader.Read())
