@@ -57,7 +57,7 @@ namespace MyWebsite.Pages.Foundation
             disasterInfo.dstart = Request.Form["disstart"];
             disasterInfo.dend = Request.Form["disend"];
             disasterInfo.ddescription = Request.Form["disdescription"];
-            disasterInfo.daid = Request.Form["daids"];
+            disasterInfo.daid = Request.Form["disaids"];
 
             try
             {
@@ -67,7 +67,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query4 = "update [dbo].[Disasters] set Location = @dislocation, StartDate = @disstart, EndDate = @disend, Description = @disdescription, RequiredAid = @daids where DisasterID = @id;";
+                    string query4 = "update [dbo].[Disasters] set Location = @dislocation, StartDate = @disstart, EndDate = @disend, Description = @disdescription, RequiredAid = @disaids where DisasterID = @id;";
 
                     using (SqlCommand comm = new SqlCommand(query4, conn))
                     {

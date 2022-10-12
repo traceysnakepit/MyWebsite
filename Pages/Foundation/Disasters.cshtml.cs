@@ -24,7 +24,7 @@ namespace MyWebsite.Pages.Foundation
             disasterInfo.dstart = Request.Form["disstart"];
             disasterInfo.dend = Request.Form["disend"];
             disasterInfo.ddescription = Request.Form["disdescription"];
-            disasterInfo.daid = Request.Form["daids"];
+            disasterInfo.daid = Request.Form["disaids"];
 
             try
             {
@@ -34,7 +34,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query4 = "insert into [dbo].[Disasters] values (@dislocation, @disstart, @disend, @disdescription, @daids);";
+                    string query4 = "insert into [dbo].[Disasters] values (@dislocation, @disstart, @disend, @disdescription, @disaids);";
 
                     using (SqlCommand comm = new SqlCommand(query4, conn))
                     {
