@@ -45,7 +45,7 @@ namespace MyWebsite.Pages
             catch (Exception ex)
             {
             }
-            Response.Redirect("/Foundation/RecordDisasters");
+            Response.Redirect("/Foundation/RecordDisaster");
         }
     }
 
