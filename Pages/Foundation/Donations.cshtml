@@ -40,8 +40,8 @@
     <form method="POST" enctype="multipart/form-data">
         <h3>Donation Information</h3>
         <input type="text" name="monname" class="box" placeholder="Donor Name" required>
-        <input type="number" name="monamount" class="box" required placeholder="Amount to donate">
-        <input type="datetime-local" name="mondate" class="box" placeholder="Date donated" required>
+        <input type="text" name="monamount" class="box" required placeholder="Amount to donate">
+        <input type="text" name="mondate" class="box" placeholder="Date donated" required>
 
         @if (Model.successMessage.Length > 0)
         {
@@ -66,7 +66,7 @@
     <form method="POST" enctype="multipart/form-data">
         <h3>Donation Information</h3>
         <input type="text" name="goodname" class="box" placeholder="Donor name" required>
-        <input type="number" name="goodtotal" class="box" required placeholder="Total items">
+        <input type="text" name="goodtotal" class="box" required placeholder="Total items">
         <h4>select type of goods to donate</h4>
         <select name="goodtype" required class="box" placeholder="Select type of goods" onchange="la(this.value)">
             <option>Clothes</option>
@@ -76,7 +76,7 @@
             <option>Bedding</option>
         </select>
         <input type="text" name="gooddescription" class="box" placeholder="Description" required>
-        <input type="datetime-local" name="gooddate" class="box" placeholder="Date donated" required>
+        <input type="text" name="gooddate" class="box" placeholder="Date donated" required>
 
         @if (Model.successMessage.Length > 0)
         {

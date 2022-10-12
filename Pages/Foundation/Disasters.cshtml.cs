@@ -1,6 +1,10 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MyWebsite.Pages.Foundation
 {
@@ -16,17 +20,11 @@ namespace MyWebsite.Pages.Foundation
 
         public void OnPost()
         {
-            string newloc = Request.Form["dislocation"];
-            string newstart = Request.Form["disstart"];
-            string newend = Request.Form["disend"];
-            string newdes = Request.Form["disdescription"];
-            string newaid = Request.Form["disaids"];
-
-            disasterInfo.dlocation = newloc;
-            disasterInfo.dstart = Convert.ToDateTime(newstart);
-            disasterInfo.dend = Convert.ToDateTime(newend);
-            disasterInfo.ddescription = newdes;
-            disasterInfo.daid = newaid;
+            disasterInfo.dlocation = Request.Form["dislocation"];
+            disasterInfo.dstart = Request.Form["disstart"];
+            disasterInfo.dend = Request.Form["disend"];
+            disasterInfo.ddescription = Request.Form["disdescription"];
+            disasterInfo.daid = Request.Form["daids"];
 
             try
             {
@@ -36,15 +34,15 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query = $"insert into [dbo].[NewDisasters] (Location, StartDate, EndDate, Details, RequiredAid) values ('{newloc}', '{newstart}', '{newend}', '{newdes}', '{newaid}');";
+                    string query4 = "insert into [dbo].[Disasters] values (@dislocation, @disstart, @disend, @disdescription, @daids);";
 
-                    using (SqlCommand comm = new SqlCommand(query, conn))
+                    using (SqlCommand comm = new SqlCommand(query4, conn))
                     {
-                        comm.Parameters.AddWithValue(newloc, disasterInfo.dlocation);
-                        comm.Parameters.AddWithValue(newstart, disasterInfo.dstart);
-                        comm.Parameters.AddWithValue(newend, disasterInfo.dend);
-                        comm.Parameters.AddWithValue(newdes, disasterInfo.ddescription);
-                        comm.Parameters.AddWithValue(newaid, disasterInfo.daid);
+                        comm.Parameters.AddWithValue("@dislocation", disasterInfo.dlocation);
+                        comm.Parameters.AddWithValue("@disstart", disasterInfo.dstart);
+                        comm.Parameters.AddWithValue("@disend", disasterInfo.dend);
+                        comm.Parameters.AddWithValue("@disdescription", disasterInfo.ddescription);
+                        comm.Parameters.AddWithValue("@disaids", disasterInfo.daid);
 
                         comm.ExecuteNonQuery();
                     }

@@ -1,6 +1,10 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MyWebsite.Pages.Foundation
 {
@@ -22,7 +26,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query1 = $"select * from [dbo].[NewDisasters] where DisasterID' = @id";
+                    string query1 = "select * from [dbo].[Disasters] where DisasterID = @id";
 
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
@@ -30,12 +34,12 @@ namespace MyWebsite.Pages.Foundation
                         using (SqlDataReader reader = comm.ExecuteReader())
                         {
                             if (reader.Read())
-                            {/*
+                            {
                                 disasterInfo.dlocation = reader.GetString(0);
                                 disasterInfo.dstart = reader.GetString(1);
                                 disasterInfo.dend = reader.GetString(2);
                                 disasterInfo.ddescription = reader.GetString(3);
-                                disasterInfo.daid = reader.GetString(4);*/
+                                disasterInfo.daid = reader.GetString(4);
                             }
                         }
                     }
@@ -49,11 +53,11 @@ namespace MyWebsite.Pages.Foundation
 
         public void OnPost()
         {
-            /* disasterInfo.dlocation = Request.Form["dislocation"];
-             disasterInfo.dstart = Request.Form["disstart"];
-             disasterInfo.dend = Request.Form["disend"];
-             disasterInfo.ddescription = Request.Form["disdescription"];
-             disasterInfo.daid = Request.Form["daids"];*/
+            disasterInfo.dlocation = Request.Form["dislocation"];
+            disasterInfo.dstart = Request.Form["disstart"];
+            disasterInfo.dend = Request.Form["disend"];
+            disasterInfo.ddescription = Request.Form["disdescription"];
+            disasterInfo.daid = Request.Form["daids"];
 
             try
             {
