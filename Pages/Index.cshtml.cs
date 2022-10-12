@@ -39,12 +39,13 @@ namespace MyWebsite.Pages
                     conn.Open();
 
                     string query8 = "SELECT * FROM [dbo].[Users] WHERE [Email] = '" + login.lemail + "' AND Password = '" + login.lpassword + "'";
+
                 }
             }
             catch (Exception ex)
             {
             }
-            Response.Redirect("/Foundation/Disasters");
+            Response.Redirect("/Foundation/RecordDisasters");
         }
     }
 
