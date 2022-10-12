@@ -55,3 +55,33 @@
     </form>
 
 </section>
+
+<section class="heading">
+    <h3>Former and Current Disasters</h3>
+</section>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Location</th>
+                <th>Started</th>
+                <th>Ended</th>
+                <th>Description</th>
+                <th>Required Aid</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.allDisasters)
+            {
+                <tr>
+                    <td>@item.dlocation</td>
+                    <td>@item.dstart</td>
+                    <td>@item.dend</td>
+                    <td>@item.ddescription</td>
+                    <td>@item.daid</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
