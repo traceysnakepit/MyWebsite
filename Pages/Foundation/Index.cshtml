@@ -31,43 +31,6 @@
 </header>
 
 <section class="heading">
-    <h3>Existing Disasters</h3>
-</section>
-
-
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Location</th>
-                <th>Started</th>
-                <th>Ended</th>
-                <th>Description</th>
-                <th>Required Aid</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.listDisaster)
-            {
-                <tr>
-                    <td>@item.did</td>
-                    <td>@item.dlocation</td>
-                    <td>@item.dstart</td>
-                    <td>@item.dend</td>
-                    <td>@item.ddescription</td>
-                    <td>@item.daid</td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="/Foundation/Update?id=@item.did">Edit</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
-<section class="heading">
     <h3>Monetary Donations</h3>
 </section>
 
@@ -121,6 +84,43 @@
                     <td>@item.gtype</td>
                     <td>@item.gdescription</td>
                     <td>@item.gdate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<section class="heading">
+    <h3>Existing Disasters</h3>
+</section>
+
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Location</th>
+                <th>Started</th>
+                <th>Ended</th>
+                <th>Description</th>
+                <th>Required Aid</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.allDisasters)
+            {
+                <tr>
+                    <td>@item.did</td>
+                    <td>@item.dlocation</td>
+                    <td>@item.dstart</td>
+                    <td>@item.dend</td>
+                    <td>@item.ddescription</td>
+                    <td>@item.daid</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/Foundation/Update?id=@item.did">Edit</a>
+                    </td>
                 </tr>
             }
         </tbody>

@@ -10,7 +10,7 @@ namespace MyWebsite.Pages.Foundation
 {
     public class IndexModel : PageModel
     {
-        public List<DisasterInfo> listDisaster = new List<DisasterInfo>();
+        public List<DisasterInfo> allDisasters = new List<DisasterInfo>();
         public List<GoodsInfo> listGoods = new List<GoodsInfo>();
         public List<MoneyInfo> listMoney = new List<MoneyInfo>();
 
@@ -41,7 +41,7 @@ namespace MyWebsite.Pages.Foundation
                                 dis.ddescription = reader.GetString(4);
                                 dis.daid = reader.GetString(5);
 
-                                listDisaster.Add(dis);
+                                allDisasters.Add(dis);
                             }
                         }
                     }
