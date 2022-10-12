@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Data.SqlClient;
 
 namespace MyWebsite.Pages.Foundation
 {
@@ -26,18 +22,18 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query1 = "select * from [dbo].[Disasters] where DisasterID = @id";
+                    string query1 = "select * from [dbo].[NewDisasters] where DisasterID = @id";
 
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
                         comm.Parameters.AddWithValue("@id", id);
                         using (SqlDataReader reader = comm.ExecuteReader())
                         {
-                            if(reader.Read())
+                            if (reader.Read())
                             {
                                 disasterInfo.dlocation = reader.GetString(0);
-                                disasterInfo.dstart = reader.GetString(1);
-                                disasterInfo.dend = reader.GetString(2);
+                                disasterInfo.dstart = reader.GetDateTime(1);
+                                disasterInfo.dend = reader.GetDateTime(2);
                                 disasterInfo.ddescription = reader.GetString(3);
                                 disasterInfo.daid = reader.GetString(4);
                             }
@@ -45,19 +41,15 @@ namespace MyWebsite.Pages.Foundation
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-
+                Console.WriteLine("Exception: " + ex.ToString());
             }
         }
 
         public void OnPost()
         {
-            disasterInfo.dlocation = Request.Form["dislocation"];
-            disasterInfo.dstart = Request.Form["disstart"];
-            disasterInfo.dend = Request.Form["disend"];
-            disasterInfo.ddescription = Request.Form["disdescription"];
-            disasterInfo.daid = Request.Form["daids"];
+            disasterInfo.dend = Convert.ToDateTime(Request.Form["disend"]);
 
             try
             {
@@ -67,27 +59,22 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query4 = "update [dbo].[Disasters] set Location = @dislocation, StartDate = @disstart, EndDate = @disend, Description = @disdescription, RequiredAid = @daids where DisasterID = @id;";
+                    string query4 = "update [dbo].[NewDisasters] set EndDate = @disend where DisasterID = @id;";
 
                     using (SqlCommand comm = new SqlCommand(query4, conn))
                     {
-                        comm.Parameters.AddWithValue("@dislocation", disasterInfo.dlocation);
-                        comm.Parameters.AddWithValue("@disstart", disasterInfo.dstart);
                         comm.Parameters.AddWithValue("@disend", disasterInfo.dend);
-                        comm.Parameters.AddWithValue("@disdescription", disasterInfo.ddescription);
-                        comm.Parameters.AddWithValue("@disaids", disasterInfo.daid);
 
                         comm.ExecuteNonQuery();
                     }
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-
+                Console.WriteLine("Exception: " + ex.ToString());
             }
-
-            Response.Redirect("/Foundation/Index");
+            successMessage = "Date updated.";
         }
     }
 }
