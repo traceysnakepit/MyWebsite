@@ -24,7 +24,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query1 = "select * from [dbo].[Disasters]";
+                    string query1 = "select * from [dbo].[NewDisasters]";
 
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
