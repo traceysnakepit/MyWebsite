@@ -19,13 +19,13 @@ namespace MyWebsite.Pages.Foundation
         {
             moneyInfo.mname = Request.Form["monname"];
             moneyInfo.mamount = Request.Form["monamount"];
-            moneyInfo.mdate = Request.Form["mondate"];
+            moneyInfo.mdate = Convert.ToDateTime(Request.Form["mondate"]);
 
             goodsInfo.gname = Request.Form["goodname"];
             goodsInfo.gtotal = Request.Form["goodtotal"];
             goodsInfo.gtype = Request.Form["goodtype"];
             goodsInfo.gdescription = Request.Form["gooddescription"];
-            goodsInfo.gdate = Request.Form["gooddate"];
+            goodsInfo.gdate = Convert.ToDateTime(Request.Form["gooddate"]);
 
             try
             {

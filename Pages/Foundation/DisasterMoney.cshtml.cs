@@ -5,9 +5,11 @@ using System.Data.SqlClient;
 
 namespace MyWebsite.Pages.Foundation
 {
-    public class DisastersModel : PageModel
+    public class DisasterMoneyModel : PageModel
     {
-        public DisasterInfo disasterInfo = new DisasterInfo();
+        public GoodsDisaster gDisaster = new GoodsDisaster();
+        public MoneyDisaster mDisaster = new MoneyDisaster();
+
         public List<DisasterInfo> allDisasters = new List<DisasterInfo>();
 
         public static DateTime Now { get; }
@@ -24,7 +26,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query1 = "select * from [dbo].[NewDisasters];";
+                    string query1 = "select * from [dbo].[NewDisasters] where EndDate > GETDATE();";
 
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
@@ -55,11 +57,12 @@ namespace MyWebsite.Pages.Foundation
 
         public void OnPost()
         {
-            disasterInfo.dlocation = Request.Form["newlocation"];
-            disasterInfo.dstart = Convert.ToDateTime(Request.Form["newstart"]);
-            disasterInfo.dend = Convert.ToDateTime(Request.Form["newend"]);
-            disasterInfo.ddescription = Request.Form["newdetails"];
-            disasterInfo.daid = Request.Form["newhelp"];
+            mDisaster.mdlocation = Request.Form["donmondisaster"];
+            mDisaster.mdamount = Request.Form["donmonamount"];
+
+            gDisaster.gdlocation = Request.Form["locationgooddon"];
+            gDisaster.gdtype = Request.Form["typegooddon"];
+            gDisaster.gdtotal = Request.Form["totalgooddon"];
 
             try
             {
@@ -69,15 +72,13 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query4 = "insert into [dbo].[NewDisasters] values (@newlocation, @newstart, @newend, @newdetails, @newhelp);";
+                    string query7 = "insert into [dbo].[DisasterGoods] values (@locationgooddon, @typegooddon, @totalgooddon);";
 
-                    using (SqlCommand comm = new SqlCommand(query4, conn))
+                    using (SqlCommand comm = new SqlCommand(query7, conn))
                     {
-                        comm.Parameters.AddWithValue("@newlocation", disasterInfo.dlocation);
-                        comm.Parameters.AddWithValue("@newstart", disasterInfo.dstart);
-                        comm.Parameters.AddWithValue("@newend", disasterInfo.dend);
-                        comm.Parameters.AddWithValue("@newdetails", disasterInfo.ddescription);
-                        comm.Parameters.AddWithValue("@newhelp", disasterInfo.daid);
+                        comm.Parameters.AddWithValue("@locationgooddon", gDisaster.gdlocation);
+                        comm.Parameters.AddWithValue("@typegooddon", gDisaster.gdtype);
+                        comm.Parameters.AddWithValue("@totalgooddon", gDisaster.gdtotal);
 
                         comm.ExecuteNonQuery();
                     }
@@ -88,7 +89,32 @@ namespace MyWebsite.Pages.Foundation
             {
                 Console.WriteLine("Exception: " + ex.ToString());
             }
-            successMessage = "Disaster details captured.";
+
+            try
+            {
+                string connString = "Server=tcp:appr6312poe.database.windows.net,1433;Initial Catalog=Foundation;Persist Security Info=False;User ID=reanetse;Password=Momentox27p!;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    conn.Open();
+
+                    string query6 = "insert into [dbo].[DisasterMoney] values (@donmondisaster, @donmonamount);";
+
+                    using (SqlCommand comm = new SqlCommand(query6, conn))
+                    {
+                        comm.Parameters.AddWithValue("@donmondisaster", mDisaster.mdlocation);
+                        comm.Parameters.AddWithValue("@donmonamount", mDisaster.mdamount);
+
+                        comm.ExecuteNonQuery();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.ToString());
+            }
+            successMessage = "Donation made.";
         }
     }
 }

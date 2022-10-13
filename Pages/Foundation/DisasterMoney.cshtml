@@ -1,5 +1,5 @@
 ﻿@page
-@model MyWebsite.Pages.Foundation.DonationsModel
+@model MyWebsite.Pages.Foundation.DisasterMoneyModel
 @{
 }
 
@@ -32,18 +32,20 @@
 
 </header>
 
-<section class="heading">
-    <h3>Monetary Donations</h3>
-</section>
-
 <section class="new-disaster">
 
     <!--form to capture user input-->
     <form method="POST" enctype="multipart/form-data">
-        <h3>Donation Information</h3>
-        <input type="text" name="monname" class="box" placeholder="Donor Name" required>
-        <input type="text" name="monamount" class="box" required placeholder="Amount to donate">
-        <input type="date" name="mondate" class="box" placeholder="Date donated" required>
+        <h3>Donate Money To A Disaster</h3>
+        <h4>Select Disaster</h4>
+        <select name="donmondisaster" required class="box" placeholder="Select type of goods" onchange="la(this.value)">
+           @foreach(var item in Model.allDisasters)
+           {
+                   <option>@item.dlocation</option>
+           } 
+        </select>
+        <h4>Amount to donate</h4>
+        <input type="text" name="donmonamount" class="box" required>
 
         @if (Model.successMessage.Length > 0)
         {
@@ -53,32 +55,33 @@
             </div>
         }
 
-        <input type="submit" value="Donate" name="add_disaster" class="btn">
+        <input type="submit" value="Record" name="add_disaster" class="btn">
     </form>
 
-</section>
-
-<section class="heading">
-    <h3>Other Donations</h3>
 </section>
 
 <section class="new-disaster">
 
     <!--form to capture user input-->
     <form method="POST" enctype="multipart/form-data">
-        <h3>Donation Information</h3>
-        <input type="text" name="goodname" class="box" placeholder="Donor name" required>
-        <input type="text" name="goodtotal" class="box" required placeholder="Total items">
-        <h4>select type of goods to donate</h4>
-        <select name="goodtype" required class="box" placeholder="Select type of goods" onchange="la(this.value)">
+        <h3>Donate Goods To A Disaster</h3>
+        <h4>Select Disaster</h4>
+        <select name="locationgooddon" required class="box" placeholder="Select type of goods" onchange="la(this.value)">
+            @foreach (var item in Model.allDisasters)
+            {
+                <option>@item.dlocation</option>
+            }
+        </select>
+        <h4>Type of goods</h4>
+        <select name="typegooddon" required class="box" onchange="la(this.value)">
             <option>Clothes</option>
             <option>Non-perishable foods</option>
             <option>Toys</option>
             <option>Toiletries</option>
             <option>Bedding</option>
         </select>
-        <input type="text" name="gooddescription" class="box" placeholder="Description" required>
-        <input type="date" name="gooddate" class="box" placeholder="Date donated" required>
+        <h4>Total items to donate</h4>
+        <input type="text" name="totalgooddon" class="box" required>
 
         @if (Model.successMessage.Length > 0)
         {
@@ -88,7 +91,7 @@
             </div>
         }
 
-        <input type="submit" value="Donate" name="add_disaster" class="btn">
+        <input type="submit" value="Record" name="add_disaster" class="btn">
     </form>
 
 </section>
