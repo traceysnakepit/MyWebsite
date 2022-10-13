@@ -59,7 +59,9 @@
 </section>
 
 <section class="heading">
+<<<<<<< HEAD
     <h3>Active and Past Disasters</h3>
+>>>>>>> master
 </section>
 
 <div class="table-wrapper">
@@ -72,6 +74,10 @@
                 <th>Description</th>
                 <th>Required Aid</th>
                 <th>Action</th>
+<<<<<<< HEAD
+=======
+                <th>Donate</th>
+>>>>>>> master
             </tr>
         </thead>
         <tbody>
@@ -91,6 +97,22 @@
                      }
                   }
             </tr>
+=======
+                <tr>
+                    <td>@item.dlocation</td>
+                    <td>@item.dstart</td>
+                    <td>@item.dend</td>
+                    <td>@item.ddescription</td>
+                    <td>@item.daid</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/Foundation/Update?id=@item.did">Edit</a>
+                    </td>
+                    <td>
+                        <a class="option-btn" href="/Foundation/DonateMoney?id=@item.did">Money</a>
+                        <a class="option-btn" href="/Foundation/DonateGoods?id=@item.did">Goods</a>
+                    </td>
+                </tr>
+>>>>>>> master
             }
         </tbody>
     </table>
