@@ -196,4 +196,22 @@ namespace MyWebsite.Pages.Foundation
         public string gdtype;
         public string gdtotal;
     }
+
+    public class NewPurchases
+    {
+        public string pid;
+        public string ptype;
+        public string ptotal;
+        public string pprice;
+    }
+
+    public class Difference
+    {
+        public string maindiff;
+    }
+
+    public class Sum
+    {
+        public string mainsum;
+    }
 }
