@@ -10,6 +10,8 @@ namespace MyWebsite.Pages.Foundation
         public DisasterInfo disasterInfo = new DisasterInfo();
         public List<DisasterInfo> allDisasters = new List<DisasterInfo>();
 
+        public static DateTime Now { get; }
+
         public string successMessage = "";
 
         public void OnGet()

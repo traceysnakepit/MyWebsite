@@ -57,7 +57,7 @@
 </section>
 
 <section class="heading">
-    <h3>Former and Current Disasters</h3>
+    <h3>Active and Past Disasters</h3>
 </section>
 
 <div class="table-wrapper">
@@ -82,13 +82,17 @@
                 <td>@item.dend</td>
                 <td>@item.ddescription</td>
                 <td>@item.daid</td>
+                @{if (item.dend > DateTime.Now)
+                    {
                 <td>
                     <a class="btn btn-primary btn-sm" href="/Foundation/Update?id=@item.did">Edit</a>
                 </td>
                 <td>
-                    <a class="option-btn" href="/Foundation/DonateMoney?id=@item.did">Money</a>
+                    <a class="option-btn" href="/Foundation/DisasterMoney?id=@item.did">Money</a>
                     <a class="option-btn" href="/Foundation/DonateGoods?id=@item.did">Goods</a>
                 </td>
+                     }
+                  }
             </tr>
             }
         </tbody>
