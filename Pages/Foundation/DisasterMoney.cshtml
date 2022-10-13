@@ -37,7 +37,12 @@
     <form method="POST" enctype="multipart/form-data">
         <h3>Donate Money To A Disaster</h3>
         <h4>Select Disaster</h4>
-        <input type="text" name="donmondisaster" class="box" required>
+        <select name="donmondisaster" required class="box" placeholder="Select type of goods" onchange="la(this.value)">
+           @foreach(var item in Model.allDisasters)
+           {
+                   <option>@item.dlocation</option>
+           } 
+        </select>
         <h4>Amount to donate</h4>
         <input type="text" name="donmonamount" class="box" required>
 
@@ -60,7 +65,12 @@
     <form method="POST" enctype="multipart/form-data">
         <h3>Donate Goods To A Disaster</h3>
         <h4>Select Disaster</h4>
-        <input type="text" name="locationgooddon" class="box" required>
+        <select name="locationgooddon" required class="box" placeholder="Select type of goods" onchange="la(this.value)">
+            @foreach (var item in Model.allDisasters)
+            {
+                <option>@item.dlocation</option>
+            }
+        </select>
         <h4>Type of goods</h4>
         <select name="typegooddon" required class="box" onchange="la(this.value)">
             <option>Clothes</option>
