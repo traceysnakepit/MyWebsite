@@ -1,0 +1,49 @@
+﻿@page
+@model MyWebsite.Pages.Foundation.ActiveDisastersModel
+@{
+}
+
+<header class="header">
+
+    <div class="flex">
+
+        <a href="Homepage.html" class="logo">Disasters<span> Alleviation </span>Foundation</a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="/Foundation/ActiveDisasters">Active Disasters</a></li>
+                <li><a href="/Foundation/TotalDonations">Donations Received</a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+</header>
+
+<section class="heading">
+    <h3>Active Disasters</h3>
+</section>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Location</th>
+                <th>Started</th>
+                <th>Description</th>
+                <th>Required Aid</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.allDisasters)
+            {
+                <tr>
+                    <td>@item.dlocation</td>
+                    <td>@item.dstart</td>
+                    <td>@item.ddescription</td>
+                    <td>@item.daid</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
