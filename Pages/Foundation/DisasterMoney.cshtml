@@ -1,0 +1,97 @@
+﻿@page
+@model MyWebsite.Pages.Foundation.DisasterMoneyModel
+@{
+}
+
+<header class="header">
+
+    <div class="flex">
+
+        <a href="Homepage.html" class="logo">Disasters<span> Alleviation </span>Foundation</a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="/Foundation/Index">Summaries</a></li>
+                <li><a href="/Foundation/Disasters">Disasters</a></li>
+                <li><a href="/Foundation/Donations">Donations</a></li>
+                <li><a href="/Foundation/DisasterMoney">Disaster-Specific</a></li>
+                <li><a href="/Foundation/Purchases">Purchase</a></li>
+            </ul>
+        </nav>
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+        </div>
+
+        <div class="account-box">
+            <a href="#" class="delete-btn">Logout</a>
+        </div>
+
+    </div>
+
+</header>
+
+<section class="new-disaster">
+
+    <!--form to capture user input-->
+    <form method="POST" enctype="multipart/form-data">
+        <h3>Donate Money To A Disaster</h3>
+        <h4>Select Disaster</h4>
+        <select name="donmondisaster" required class="box" placeholder="Select type of goods" onchange="la(this.value)">
+            @foreach (var item in Model.allDisasters)
+            {
+                <option>@item.dlocation</option>
+            }
+        </select>
+        <h4>Amount to donate</h4>
+        <input type="text" name="donmonamount" class="box" required>
+
+        @if (Model.successMessage.Length > 0)
+        {
+            <div class='alert alert-warning alert-dismissable fade show' role='alert'>
+                <strong>@Model.successMessage</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+
+        <input type="submit" value="Record" name="add_disaster" class="btn">
+    </form>
+
+</section>
+
+<section class="new-disaster">
+
+    <!--form to capture user input-->
+    <form method="POST" enctype="multipart/form-data">
+        <h3>Donate Goods To A Disaster</h3>
+        <h4>Select Disaster</h4>
+        <select name="locationgooddon" required class="box" placeholder="Select type of goods" onchange="la(this.value)">
+            @foreach (var item in Model.allDisasters)
+            {
+                <option>@item.dlocation</option>
+            }
+        </select>
+        <h4>Type of goods</h4>
+        <select name="typegooddon" required class="box" onchange="la(this.value)">
+            <option>Clothes</option>
+            <option>Non-perishable foods</option>
+            <option>Toys</option>
+            <option>Toiletries</option>
+            <option>Bedding</option>
+        </select>
+        <h4>Total items to donate</h4>
+        <input type="text" name="totalgooddon" class="box" required>
+
+        @if (Model.successMessage.Length > 0)
+        {
+            <div class='alert alert-warning alert-dismissable fade show' role='alert'>
+                <strong>@Model.successMessage</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+
+        <input type="submit" value="Record" name="add_disaster" class="btn">
+    </form>
+
+</section>
