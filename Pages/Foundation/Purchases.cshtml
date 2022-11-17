@@ -1,0 +1,124 @@
+﻿@page
+@model MyWebsite.Pages.Foundation.PurchasesModel
+@{
+}
+
+<header class="header">
+
+    <div class="flex">
+
+        <a href="Homepage.html" class="logo">Disasters<span> Alleviation </span>Foundation</a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="/Foundation/Index">Summaries</a></li>
+                <li><a href="/Foundation/Disasters">Disasters</a></li>
+                <li><a href="/Foundation/Donations">Donations</a></li>
+                <li><a href="/Foundation/DisasterMoney">Disaster-Specific</a></li>
+                <li><a href="/Foundation/Purchases">Purchase</a></li>
+            </ul>
+        </nav>
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+        </div>
+
+        <div class="account-box">
+            <a href="#" class="delete-btn">Logout</a>
+        </div>
+
+    </div>
+
+</header>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>TOTAL GOODS AVAILABLE</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.getSum)
+            {
+                <tr><td>@item.mainsum </td></tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>TOTAL FUNDS REMAINING(R)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.getDiff)
+            {
+                <tr><td>R @item.maindiff</td></tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<section class="new-disaster">
+
+    <!--form to capture user input-->
+    <form method="POST" enctype="multipart/form-data">
+        <h3>Make A Purchase</h3>
+        <h4>Type of Goods</h4>
+        <select name="goodtype" required class="box" onchange="la(this.value)">
+            <option>Clothes</option>
+            <option>Non-perishable foods</option>
+            <option>Toys</option>
+            <option>Toiletries</option>
+            <option>Bedding</option>
+        </select>
+        <h4>Total Items</h4>
+        <input type="text" name="goodstotal" class="box" required>
+        <h4>Total Cost</h4>
+        <input type="text" name="goodscost" class="box" required>
+
+        @if (Model.successMessage.Length > 0)
+        {
+            <div class='alert alert-warning alert-dismissable fade show' role='alert'>
+                <strong>@Model.successMessage</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+
+        <input type="submit" value="Record" name="add_disaster" class="btn">
+    </form>
+
+</section>
+
+<section class="heading">
+    <h3>Purchased Items</h3>
+</section>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type Items</th>
+                <th>Total Items</th>
+                <th>Total Cost(R)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.purchasedGoods)
+            {
+                <tr>
+                    <td>@item.pid</td>
+                    <td>@item.ptype</td>
+                    <td>@item.ptotal</td>
+                    <td>@item.pprice</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

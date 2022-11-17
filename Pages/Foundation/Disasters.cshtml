@@ -14,6 +14,8 @@
                 <li><a href="/Foundation/Index">Summaries</a></li>
                 <li><a href="/Foundation/Disasters">Disasters</a></li>
                 <li><a href="/Foundation/Donations">Donations</a></li>
+                <li><a href="/Foundation/DisasterMoney">Disaster-Specific</a></li>
+                <li><a href="/Foundation/Purchases">Purchase</a></li>
             </ul>
         </nav>
 
@@ -57,7 +59,9 @@
 </section>
 
 <section class="heading">
-    <h3>Former and Current Disasters</h3>
+    <<<<<<< HEAD
+    <h3>Active and Past Disasters</h3>
+    >>>>>>> master
 </section>
 
 <div class="table-wrapper">
@@ -70,25 +74,41 @@
                 <th>Description</th>
                 <th>Required Aid</th>
                 <th>Action</th>
+                <th>Donate</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.allDisasters)
             {
-           
-                <td>@item.dlocation</td>
-                <td>@item.dstart</td>
-                <td>@item.dend</td>
-                <td>@item.ddescription</td>
-                <td>@item.daid</td>
-                @if (item.dend > DateTime.Now)
-                    {
-                <td>
-                    <a class="btn btn-primary btn-sm" href="/Foundation/Update?id=@item.did">Edit</a>
-                </td>        
-                }
+                <tr>
+                    <td>@item.dlocation</td>
+                    <td>@item.dstart</td>
+                    <td>@item.dend</td>
+                    <td>@item.ddescription</td>
+                    <td>@item.daid</td>
+                    @{if (item.dend > DateTime.Now)
+                        {
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="/Foundation/Update?id=@item.did">Edit</a>
+                            </td>
+                        }
+                    }
+                </tr>
+                <tr>
+                    <td>@item.dlocation</td>
+                    <td>@item.dstart</td>
+                    <td>@item.dend</td>
+                    <td>@item.ddescription</td>
+                    <td>@item.daid</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/Foundation/Update?id=@item.did">Edit</a>
+                    </td>
+                    <td>
+                        <a class="option-btn" href="/Foundation/DonateMoney?id=@item.did">Money</a>
+                        <a class="option-btn" href="/Foundation/DonateGoods?id=@item.did">Goods</a>
+                    </td>
+                </tr>
             }
-        </tr>
         </tbody>
     </table>
 </div>

@@ -31,11 +31,12 @@ namespace MyWebsite.Pages.Foundation
                         {
                             if (reader.Read())
                             {
-                                disasterInfo.dlocation = reader.GetString(0);
-                                disasterInfo.dstart = reader.GetDateTime(1);
-                                disasterInfo.dend = reader.GetDateTime(2);
-                                disasterInfo.ddescription = reader.GetString(3);
-                                disasterInfo.daid = reader.GetString(4);
+                                disasterInfo.did = "" + reader.GetInt32(0);
+                                disasterInfo.dlocation = reader.GetString(1);
+                                disasterInfo.dstart = reader.GetDateTime(2);
+                                disasterInfo.dend = reader.GetDateTime(3);
+                                disasterInfo.ddescription = reader.GetString(4);
+                                disasterInfo.daid = reader.GetString(5);
                             }
                         }
                     }

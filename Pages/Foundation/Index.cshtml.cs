@@ -9,6 +9,8 @@ namespace MyWebsite.Pages.Foundation
     {
         public List<GoodsInfo> listGoods = new List<GoodsInfo>();
         public List<MoneyInfo> listMoney = new List<MoneyInfo>();
+        public List<MoneyDisaster> moneyDisaster = new List<MoneyDisaster>();
+        public List<GoodsDisaster> goodsDisasters = new List<GoodsDisaster>();
 
         public void OnGet()
         {
@@ -36,7 +38,7 @@ namespace MyWebsite.Pages.Foundation
                                 goodies.gtotal = "" + reader.GetInt32(2);
                                 goodies.gtype = reader.GetString(3);
                                 goodies.gdescription = reader.GetString(4);
-                                goodies.gdate = reader.GetString(5);
+                                goodies.gdate = reader.GetDateTime(5);
 
                                 listGoods.Add(goodies);
                             }
@@ -70,9 +72,76 @@ namespace MyWebsite.Pages.Foundation
                                 monies.mid = "" + reader.GetInt32(0);
                                 monies.mname = reader.GetString(1);
                                 monies.mamount = "" + reader.GetInt32(2);
-                                monies.mdate = reader.GetString(3);
+                                monies.mdate = reader.GetDateTime(3);
 
                                 listMoney.Add(monies);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.ToString());
+            }
+
+            try
+            {
+                String connString = "Server=tcp:appr6312poe.database.windows.net,1433;Initial Catalog=Foundation;Persist Security Info=False;User ID=reanetse;Password=Momentox27p!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    conn.Open();
+
+                    string query3 = "select * from [dbo].[DisasterMoney]";
+
+                    using (SqlCommand comm = new SqlCommand(query3, conn))
+                    {
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                MoneyDisaster monies = new MoneyDisaster();
+
+                                monies.mdid = "" + reader.GetInt32(0);
+                                monies.mdlocation = reader.GetString(1);
+                                monies.mdamount = "" + reader.GetInt32(2);
+
+                                moneyDisaster.Add(monies);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.ToString());
+            }
+
+            try
+            {
+                String connString = "Server=tcp:appr6312poe.database.windows.net,1433;Initial Catalog=Foundation;Persist Security Info=False;User ID=reanetse;Password=Momentox27p!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    conn.Open();
+
+                    string query3 = "select * from [dbo].[DisasterGoods]";
+
+                    using (SqlCommand comm = new SqlCommand(query3, conn))
+                    {
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                GoodsDisaster monies = new GoodsDisaster();
+
+                                monies.gdid = "" + reader.GetInt32(0);
+                                monies.gdlocation = reader.GetString(1);
+                                monies.gdtype = reader.GetString(2);
+                                monies.gdtotal = "" + reader.GetInt32(3);
+
+                                goodsDisasters.Add(monies);
                             }
                         }
                     }
@@ -100,7 +169,7 @@ namespace MyWebsite.Pages.Foundation
         public string mid;
         public string mname;
         public string mamount;
-        public string mdate;
+        public DateTime mdate;
     }
 
     public class GoodsInfo
@@ -110,6 +179,39 @@ namespace MyWebsite.Pages.Foundation
         public string gtotal;
         public string gtype;
         public string gdescription;
-        public string gdate;
+        public DateTime gdate;
+    }
+
+    public class MoneyDisaster
+    {
+        public string mdid;
+        public string mdlocation;
+        public string mdamount;
+    }
+
+    public class GoodsDisaster
+    {
+        public string gdid;
+        public string gdlocation;
+        public string gdtype;
+        public string gdtotal;
+    }
+
+    public class NewPurchases
+    {
+        public string pid;
+        public string ptype;
+        public string ptotal;
+        public string pprice;
+    }
+
+    public class Difference
+    {
+        public string maindiff;
+    }
+
+    public class Sum
+    {
+        public string mainsum;
     }
 }

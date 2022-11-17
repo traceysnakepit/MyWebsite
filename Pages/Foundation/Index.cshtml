@@ -14,6 +14,8 @@
                 <li><a href="/Foundation/Index">Summaries</a></li>
                 <li><a href="/Foundation/Disasters">Disasters</a></li>
                 <li><a href="/Foundation/Donations">Donations</a></li>
+                <li><a href="/Foundation/DisasterMoney">Disaster-Specific</a></li>
+                <li><a href="/Foundation/Purchases">Purchase</a></li>
             </ul>
         </nav>
 
@@ -40,7 +42,7 @@
             <tr>
                 <th>ID</th>
                 <th>Donor Name</th>
-                <th>Amount Donated</th>
+                <th>Amount Donated (R)</th>
                 <th>Date Donated</th>
             </tr>
         </thead>
@@ -84,6 +86,60 @@
                     <td>@item.gtype</td>
                     <td>@item.gdescription</td>
                     <td>@item.gdate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<section class="heading">
+    <h3>Disaster-Specific Donation [Monetary]</h3>
+</section>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Disaster Location</th>
+                <th>Amount (R)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.moneyDisaster)
+            {
+                <tr>
+                    <td>@item.mdid</td>
+                    <td>@item.mdlocation</td>
+                    <td>@item.mdamount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<section class="heading">
+    <h3>Disaster-Specific Donation [Other]</h3>
+</section>
+
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Disaster Location</th>
+                <th>Item Type</th>
+                <th>Total Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.goodsDisasters)
+            {
+                <tr>
+                    <td>@item.gdid</td>
+                    <td>@item.gdlocation</td>
+                    <td>@item.gdtype</td>
+                    <td>@item.gdtotal</td>
                 </tr>
             }
         </tbody>
