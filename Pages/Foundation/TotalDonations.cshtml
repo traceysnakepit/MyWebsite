@@ -21,83 +21,21 @@
 </header>
 
 <section class="heading">
-    <h3>Monetary Donations</h3>
+    <h3>Active Disasters Monetary Donations</h3>
 </section>
 
 <div class="table-wrapper">
     <table class="fl-table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Donor Name</th>
-                <th>Amount Donated (R)</th>
-                <th>Date Donated</th>
+                <th>Location</th>
+                <th>Amount</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.listMoney)
+            @foreach (var item in Model.allMoney)
             {
                 <tr>
-                    <td>@item.mid</td>
-                    <td>@item.mname</td>
-                    <td>@item.mamount</td>
-                    <td>@item.mdate</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
-<section class="heading">
-    <h3>Goods Donations</h3>
-</section>
-
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Donor Name</th>
-                <th>Total Items</th>
-                <th>Item Type</th>
-                <th>Description</th>
-                <th>Date Donated</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.listGoods)
-            {
-                <tr>
-                    <td>@item.gid</td>
-                    <td>@item.gname</td>
-                    <td>@item.gtotal</td>
-                    <td>@item.gtype</td>
-                    <td>@item.gdescription</td>
-                    <td>@item.gdate</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
-<section class="heading">
-    <h3>Disaster-Specific Donation [Monetary]</h3>
-</section>
-
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Disaster Location</th>
-                <th>Amount (R)</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.moneyDisaster)
-            {
-                <tr>
-                    <td>@item.mdid</td>
                     <td>@item.mdlocation</td>
                     <td>@item.mdamount</td>
                 </tr>
@@ -107,24 +45,22 @@
 </div>
 
 <section class="heading">
-    <h3>Disaster-Specific Donation [Other]</h3>
+    <h3>Active Disasters Goods Donations</h3>
 </section>
 
 <div class="table-wrapper">
     <table class="fl-table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Disaster Location</th>
-                <th>Item Type</th>
-                <th>Total Items</th>
+                <th>Location</th>
+                <th>Type</th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.goodsDisasters)
+            @foreach (var item in Model.allGoods)
             {
                 <tr>
-                    <td>@item.gdid</td>
                     <td>@item.gdlocation</td>
                     <td>@item.gdtype</td>
                     <td>@item.gdtotal</td>
