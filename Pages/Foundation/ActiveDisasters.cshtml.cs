@@ -8,8 +8,11 @@ namespace MyWebsite.Pages.Foundation
     public class ActiveDisastersModel : PageModel
     {
 
-        public DisasterInfo disasterInfo = new DisasterInfo();
-        public List<DisasterInfo> allDisasters = new List<DisasterInfo>();
+        public GoodsDisaster gDisaster = new GoodsDisaster();
+        public MoneyDisaster mDisaster = new MoneyDisaster();
+
+        public List<MoneyDisaster> allMoney = new List<MoneyDisaster>();
+        public List<GoodsDisaster> allGoods = new List<GoodsDisaster>();
 
         public static DateTime Now { get; }
 
@@ -23,7 +26,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query1 = "select Location, StartDate, EndDate, Details, Aid from [dbo].[NewDisasters] where EndDate > '" + DateTime.Now + "';";
+                    string query1 = "select * from [dbo].[DisasterMoney];";
 
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
@@ -31,16 +34,38 @@ namespace MyWebsite.Pages.Foundation
                         {
                             while (reader.Read())
                             {
-                                DisasterInfo dis = new DisasterInfo();
+                                MoneyDisaster dis = new MoneyDisaster();
 
-                                dis.did = "" + reader.GetInt32(0);
-                                dis.dlocation = reader.GetString(1);
-                                dis.dstart = reader.GetDateTime(2);
-                                dis.dend = reader.GetDateTime(3);
-                                dis.ddescription = reader.GetString(4);
-                                dis.daid = reader.GetString(5);
+                                dis.mdid = "" + reader.GetInt32(0);
+                                dis.mdlocation = reader.GetString(1);
+                                dis.mdamount = reader.GetString(2);
 
-                                allDisasters.Add(dis);
+                                allMoney.Add(dis);
+                            }
+                        }
+                    }
+                }
+
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    conn.Open();
+
+                    string query1 = "select * from [dbo].[DisasterGoods];";
+
+                    using (SqlCommand comm = new SqlCommand(query1, conn))
+                    {
+                        using (SqlDataReader reader = comm.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                GoodsDisaster dis = new GoodsDisaster();
+
+                                dis.gdid = "" + reader.GetInt32(0);
+                                dis.gdlocation = reader.GetString(1);
+                                dis.gdtype = reader.GetString(2);
+                                dis.gdtotal = reader.GetString(3);
+
+                                allGoods.Add(dis);
                             }
                         }
                     }
