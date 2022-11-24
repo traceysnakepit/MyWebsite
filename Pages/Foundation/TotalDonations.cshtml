@@ -28,6 +28,7 @@
     <table class="fl-table">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Location</th>
                 <th>Amount</th>
             </tr>
@@ -36,6 +37,7 @@
             @foreach (var item in Model.allMoney)
             {
                 <tr>
+                    <td>@item.mdid</td>
                     <td>@item.mdlocation</td>
                     <td>@item.mdamount</td>
                 </tr>
@@ -52,6 +54,7 @@
     <table class="fl-table">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Location</th>
                 <th>Type</th>
                 <th>Total</th>
@@ -61,6 +64,7 @@
             @foreach (var item in Model.allGoods)
             {
                 <tr>
+                    <td>@item.gdid</td>
                     <td>@item.gdlocation</td>
                     <td>@item.gdtype</td>
                     <td>@item.gdtotal</td>

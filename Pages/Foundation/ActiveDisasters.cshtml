@@ -37,12 +37,17 @@
         <tbody>
             @foreach (var item in Model.allDisasters)
             {
-                <tr>
-                    <td>@item.dlocation</td>
-                    <td>@item.dstart</td>
-                    <td>@item.ddescription</td>
-                    <td>@item.daid</td>
-                </tr>
+            <tr>
+                @{if (item.dend > DateTime.Now)
+                    {
+                <td>@item.dlocation</td>
+                <td>@item.dstart</td>
+                <td>@item.dend</td>
+                <td>@item.ddescription</td>
+                <td>@item.daid</td>
+                        }
+                    }
+            </tr>
             }
         </tbody>
     </table>

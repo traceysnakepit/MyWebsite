@@ -35,7 +35,7 @@ namespace MyWebsite.Pages.Foundation
 
                                 dis.mdid = "" + reader.GetInt32(0);
                                 dis.mdlocation = reader.GetString(1);
-                                dis.mdamount = reader.GetString(2);
+                                dis.mdamount = "" + reader.GetInt32(2);
 
                                 allMoney.Add(dis);
                             }
@@ -60,7 +60,7 @@ namespace MyWebsite.Pages.Foundation
                                 dis.gdid = "" + reader.GetInt32(0);
                                 dis.gdlocation = reader.GetString(1);
                                 dis.gdtype = reader.GetString(2);
-                                dis.gdtotal = reader.GetString(3);
+                                dis.gdtotal = "" + reader.GetInt32(3);
 
                                 allGoods.Add(dis);
                             }

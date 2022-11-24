@@ -22,7 +22,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query1 = "select * from [dbo].[NewDisasters] where DisasterID = @id";
+                    string query1 = "select 'EndDate' from [dbo].[NewDisasters] where DisasterID = @id";
 
                     using (SqlCommand comm = new SqlCommand(query1, conn))
                     {
@@ -31,12 +31,7 @@ namespace MyWebsite.Pages.Foundation
                         {
                             if (reader.Read())
                             {
-                                disasterInfo.did = "" + reader.GetInt32(0);
-                                disasterInfo.dlocation = reader.GetString(1);
-                                disasterInfo.dstart = reader.GetDateTime(2);
-                                disasterInfo.dend = reader.GetDateTime(3);
-                                disasterInfo.ddescription = reader.GetString(4);
-                                disasterInfo.daid = reader.GetString(5);
+                                disasterInfo.dend = reader.GetDateTime(0);
                             }
                         }
                     }
@@ -60,7 +55,7 @@ namespace MyWebsite.Pages.Foundation
                 {
                     conn.Open();
 
-                    string query4 = "update [dbo].[NewDisasters] set EndDate = @disend where DisasterID = @id;";
+                    string query4 = "update [dbo].[NewDisasters] set 'EndDate' = @disend where 'DisasterID' = @id;";
 
                     using (SqlCommand comm = new SqlCommand(query4, conn))
                     {
